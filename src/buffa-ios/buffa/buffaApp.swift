@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct buffaApp: App {
+    @ObservableObject srv = 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Command(currentLine: "")
         }
     }
 }
