@@ -64,7 +64,6 @@ class SrvClient: SrvClientProtocol {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let e = error {
                 print(e.localizedDescription)
-                //TODO: Decide on error handling
                 completionHandler(nil)
                 return
             }
