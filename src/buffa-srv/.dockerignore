@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+
+docker_build_image.sh
+docker_run_image.sh
+.dockerignore
+Dockerfile
+
+.gitignore

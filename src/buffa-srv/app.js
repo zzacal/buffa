@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 5501
 const HashTable = require('./hashTable.js')
 
 // Parse URL-encoded bodies (as sent by HTML forms)
