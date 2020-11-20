@@ -13,6 +13,10 @@
 		C1024E712565F94C009620C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1024E702565F94C009620C3 /* Preview Assets.xcassets */; };
 		C1024E7C2565F94D009620C3 /* buffaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1024E7B2565F94D009620C3 /* buffaTests.swift */; };
 		C1024E872565F94D009620C3 /* buffaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1024E862565F94D009620C3 /* buffaUITests.swift */; };
+		C1024E982565FA98009620C3 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1024E972565FA98009620C3 /* Login.swift */; };
+		C1024EA52565FDA6009620C3 /* Btn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1024EA42565FDA6009620C3 /* Btn.swift */; };
+		C1024EAD256602EB009620C3 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1024EAC256602EB009620C3 /* TextBox.swift */; };
+		C197FC582567514500738DA2 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197FC572567514500738DA2 /* Command.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 		C1024E822565F94D009620C3 /* buffaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = buffaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1024E862565F94D009620C3 /* buffaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = buffaUITests.swift; sourceTree = "<group>"; };
 		C1024E882565F94D009620C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1024E972565FA98009620C3 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		C1024EA42565FDA6009620C3 /* Btn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Btn.swift; sourceTree = "<group>"; };
+		C1024EAC256602EB009620C3 /* TextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
+		C197FC572567514500738DA2 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +103,14 @@
 		C1024E682565F94A009620C3 /* buffa */ = {
 			isa = PBXGroup;
 			children = (
+				C1024EA32565FD71009620C3 /* Components */,
+				C1024E9C2565FAB2009620C3 /* User */,
 				C1024E692565F94A009620C3 /* buffaApp.swift */,
 				C1024E6B2565F94A009620C3 /* ContentView.swift */,
 				C1024E6D2565F94C009620C3 /* Assets.xcassets */,
 				C1024E722565F94C009620C3 /* Info.plist */,
 				C1024E6F2565F94C009620C3 /* Preview Content */,
+				C197FC572567514500738DA2 /* Command.swift */,
 			);
 			path = buffa;
 			sourceTree = "<group>";
@@ -128,6 +139,23 @@
 				C1024E882565F94D009620C3 /* Info.plist */,
 			);
 			path = buffaUITests;
+			sourceTree = "<group>";
+		};
+		C1024E9C2565FAB2009620C3 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C1024E972565FA98009620C3 /* Login.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		C1024EA32565FD71009620C3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C1024EA42565FDA6009620C3 /* Btn.swift */,
+				C1024EAC256602EB009620C3 /* TextBox.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +236,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C1024E612565F94A009620C3 /* Build configuration list for PBXProject "buffa" */;
+			buildConfigurationList = C1024E612565F94A009620C3 /* Build configuration list for PBXProject "buffa-ios" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -259,8 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1024EA52565FDA6009620C3 /* Btn.swift in Sources */,
 				C1024E6C2565F94A009620C3 /* ContentView.swift in Sources */,
 				C1024E6A2565F94A009620C3 /* buffaApp.swift in Sources */,
+				C1024EAD256602EB009620C3 /* TextBox.swift in Sources */,
+				C1024E982565FA98009620C3 /* Login.swift in Sources */,
+				C197FC582567514500738DA2 /* Command.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,7 +575,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C1024E612565F94A009620C3 /* Build configuration list for PBXProject "buffa" */ = {
+		C1024E612565F94A009620C3 /* Build configuration list for PBXProject "buffa-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1024E892565F94D009620C3 /* Debug */,
