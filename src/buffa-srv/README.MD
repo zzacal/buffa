@@ -19,5 +19,5 @@ docker run -d --name=buffa-srv \
 # how to publish the image?
 Run 
 ```
-./docker_push.sh
+./scripts/docker_push.sh
 ```
