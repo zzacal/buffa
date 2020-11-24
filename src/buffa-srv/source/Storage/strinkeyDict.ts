@@ -1,5 +1,5 @@
-class HashTable {
-  values: Dictionary<any>;
+class StringkeyDict {
+  values: StrinkeyCollection<any>;
   length: number;
   size: number;
   constructor() {
@@ -28,10 +28,10 @@ class HashTable {
   }
 }
 
-interface Dictionary<T> {
+interface StrinkeyCollection<T> {
   [Key: string]: T;
 }
 
-export default HashTable
+export default StringkeyDict
 
 // module.exports = HashTable

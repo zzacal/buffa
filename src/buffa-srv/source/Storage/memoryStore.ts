@@ -1,11 +1,11 @@
 import Store from './istore';
-import HashTable from './hashTable';
+import StringkeyDict from './hashTable';
 
 class MemoryStore implements Store {
-    records: HashTable;
+    records: StringkeyDict;
 
     constructor() {
-        this.records = new HashTable();
+        this.records = new StringkeyDict();
     }
 
     push(key: string, value: string) {
