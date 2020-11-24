@@ -1,5 +1,5 @@
 import Store from './istore';
-import StringkeyDict from './hashTable';
+import StringkeyDict from './strinkeyDict';
 
 class MemoryStore implements Store {
     records: StringkeyDict;

@@ -33,5 +33,3 @@ interface StrinkeyCollection<T> {
 }
 
 export default StringkeyDict
-
-// module.exports = HashTable
