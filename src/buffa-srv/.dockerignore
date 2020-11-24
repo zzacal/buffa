@@ -1,9 +1,16 @@
+# Development stuff
 node_modules
+scripts
+source
 npm-debug.log
+README.MD
+tsconfig.json
+tslint.json
 
-docker_build_image.sh
-docker_run_image.sh
+
+# Docker stuff
 .dockerignore
 Dockerfile
 
+# Git stuff
 .gitignore
