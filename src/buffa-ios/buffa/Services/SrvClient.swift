@@ -8,15 +8,14 @@
 import Foundation
 
 protocol SrvClientProtocol {
-    func pop(handler: @escaping (String?) -> Void) -> Void
-    func push(msg: String, handler: @escaping (Bool) -> Void) -> Void
+    func pop(key: String, handler: @escaping (String?) -> Void) -> Void
+    func push(key: String, msg: String, handler: @escaping (Bool) -> Void) -> Void
 }
 
 class SrvClient: SrvClientProtocol {
     var serviceHost: String = ""
-    
-    func pop(handler: @escaping (String?) -> Void) -> Void  {
-        get(url: "pop", completionHandler: {(data: Data?) -> Void in
+    func pop(key: String, handler: @escaping (String?) -> Void) -> Void  {
+        get(url: "pop?key=\(key)", completionHandler: {(data: Data?) -> Void in
             if let sureData = data,
                let result = NSString(data: sureData, encoding: String.Encoding.utf8.rawValue) as String? {
                 handler(result)
@@ -26,10 +25,10 @@ class SrvClient: SrvClientProtocol {
         })
     }
     
-    func push(msg: String, handler: @escaping (Bool) -> Void) -> Void {
+    func push(key: String, msg: String, handler: @escaping (Bool) -> Void) -> Void {
         do {
             let params = try JSONSerialization.data(withJSONObject: ["message": msg])
-            post(url: "push", data: params, completionHandler: { (data: Data?) in
+            post(url: "push?key=\(key)", data: params, completionHandler: { (data: Data?) in
                 if let _ = data {
                     handler(true)
                 } else {
@@ -80,6 +79,7 @@ class SrvClient: SrvClientProtocol {
     func createRequest(method: String, path : String, params : Data?) -> URLRequest {
         let url = address(path: path)
         var request = URLRequest(url: url)
+        
         request.httpMethod = method
         request.timeoutInterval = 15.0
         if let body = params {
@@ -90,11 +90,20 @@ class SrvClient: SrvClientProtocol {
         return request
     }
     
-    func address(path: String) -> URL {
+    func address(path: String) -> URL {        
         URL(string: "\(serviceHost)/\(path)")!
     }
     
-    init(_ host: String, _ apiKey: String) {
+    init(_ host: String) {
         self.serviceHost = host
+    }
+}
+
+class MockSrvClient: SrvClientProtocol {
+    func pop(key: String, handler: @escaping (String?) -> Void) -> Void {
+        handler("test")
+    }
+    func push(key: String, msg: String, handler: @escaping (Bool) -> Void) -> Void {
+        handler(true)
     }
 }

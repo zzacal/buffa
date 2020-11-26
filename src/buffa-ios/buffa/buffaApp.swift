@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct buffaApp: App {
-    @ObservableObject srv = 
+    let persistenceController = PersistenceController.shared
+    let client = SrvClient("")
+
     var body: some Scene {
         WindowGroup {
-            Command(currentLine: "")
+            ContentView(viewService: ViewService(client))
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

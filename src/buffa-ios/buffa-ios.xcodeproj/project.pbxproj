@@ -16,8 +16,14 @@
 		C1024E982565FA98009620C3 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1024E972565FA98009620C3 /* Login.swift */; };
 		C1024EA52565FDA6009620C3 /* Btn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1024EA42565FDA6009620C3 /* Btn.swift */; };
 		C1024EAD256602EB009620C3 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1024EAC256602EB009620C3 /* TextBox.swift */; };
+		C11AEEB2256DE139009005FD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11AEEB1256DE139009005FD /* Persistence.swift */; };
+		C11AEEBB256F7B37009005FD /* Identity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11AEEB9256F7B37009005FD /* Identity+CoreDataClass.swift */; };
+		C11AEEBC256F7B37009005FD /* Identity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11AEEBA256F7B37009005FD /* Identity+CoreDataProperties.swift */; };
 		C1351F792567C6B6000FE1B6 /* SrvClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1351F782567C6B6000FE1B6 /* SrvClient.swift */; };
-		C1351F812567CE9B000FE1B6 /* ObservableSrv.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1351F802567CE9B000FE1B6 /* ObservableSrv.swift */; };
+		C1351F812567CE9B000FE1B6 /* ViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1351F802567CE9B000FE1B6 /* ViewService.swift */; };
+		C1351FDA256D83BE000FE1B6 /* SetStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1351FD9256D83BE000FE1B6 /* SetStack.swift */; };
+		C1351FDF256D867F000FE1B6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1351FDE256D867F000FE1B6 /* Endpoint.swift */; };
+		C135200F256DC725000FE1B6 /* buffa-dump.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C135200D256DC725000FE1B6 /* buffa-dump.xcdatamodeld */; };
 		C197FC582567514500738DA2 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197FC572567514500738DA2 /* Command.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +60,14 @@
 		C1024E972565FA98009620C3 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		C1024EA42565FDA6009620C3 /* Btn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Btn.swift; sourceTree = "<group>"; };
 		C1024EAC256602EB009620C3 /* TextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
+		C11AEEB1256DE139009005FD /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		C11AEEB9256F7B37009005FD /* Identity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Identity+CoreDataClass.swift"; path = "buffa/Storage/Identity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C11AEEBA256F7B37009005FD /* Identity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Identity+CoreDataProperties.swift"; path = "buffa/Storage/Identity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C1351F782567C6B6000FE1B6 /* SrvClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SrvClient.swift; sourceTree = "<group>"; };
-		C1351F802567CE9B000FE1B6 /* ObservableSrv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableSrv.swift; sourceTree = "<group>"; };
+		C1351F802567CE9B000FE1B6 /* ViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewService.swift; sourceTree = "<group>"; };
+		C1351FD9256D83BE000FE1B6 /* SetStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetStack.swift; sourceTree = "<group>"; };
+		C1351FDE256D867F000FE1B6 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		C135200E256DC725000FE1B6 /* buffa-dump.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "buffa-dump.xcdatamodel"; sourceTree = "<group>"; };
 		C197FC572567514500738DA2 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +99,8 @@
 		C1024E5D2565F94A009620C3 = {
 			isa = PBXGroup;
 			children = (
+				C11AEEB9256F7B37009005FD /* Identity+CoreDataClass.swift */,
+				C11AEEBA256F7B37009005FD /* Identity+CoreDataProperties.swift */,
 				C1024E682565F94A009620C3 /* buffa */,
 				C1024E7A2565F94D009620C3 /* buffaTests */,
 				C1024E852565F94D009620C3 /* buffaUITests */,
@@ -107,6 +121,7 @@
 		C1024E682565F94A009620C3 /* buffa */ = {
 			isa = PBXGroup;
 			children = (
+				C1352003256DC3CE000FE1B6 /* Storage */,
 				C1351F762567C67B000FE1B6 /* Services */,
 				C1024EA32565FD71009620C3 /* Components */,
 				C1024E9C2565FAB2009620C3 /* User */,
@@ -150,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				C1024E972565FA98009620C3 /* Login.swift */,
+				C1351FD9256D83BE000FE1B6 /* SetStack.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -167,9 +183,19 @@
 			isa = PBXGroup;
 			children = (
 				C1351F782567C6B6000FE1B6 /* SrvClient.swift */,
-				C1351F802567CE9B000FE1B6 /* ObservableSrv.swift */,
+				C1351F802567CE9B000FE1B6 /* ViewService.swift */,
+				C1351FDE256D867F000FE1B6 /* Endpoint.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		C1352003256DC3CE000FE1B6 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				C135200D256DC725000FE1B6 /* buffa-dump.xcdatamodeld */,
+				C11AEEB1256DE139009005FD /* Persistence.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,13 +327,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C135200F256DC725000FE1B6 /* buffa-dump.xcdatamodeld in Sources */,
 				C1351F792567C6B6000FE1B6 /* SrvClient.swift in Sources */,
+				C1351FDA256D83BE000FE1B6 /* SetStack.swift in Sources */,
 				C1024EA52565FDA6009620C3 /* Btn.swift in Sources */,
 				C1024E6C2565F94A009620C3 /* ContentView.swift in Sources */,
+				C1351FDF256D867F000FE1B6 /* Endpoint.swift in Sources */,
 				C1024E6A2565F94A009620C3 /* buffaApp.swift in Sources */,
+				C11AEEBC256F7B37009005FD /* Identity+CoreDataProperties.swift in Sources */,
 				C1024EAD256602EB009620C3 /* TextBox.swift in Sources */,
+				C11AEEBB256F7B37009005FD /* Identity+CoreDataClass.swift in Sources */,
 				C1024E982565FA98009620C3 /* Login.swift in Sources */,
-				C1351F812567CE9B000FE1B6 /* ObservableSrv.swift in Sources */,
+				C11AEEB2256DE139009005FD /* Persistence.swift in Sources */,
+				C1351F812567CE9B000FE1B6 /* ViewService.swift in Sources */,
 				C197FC582567514500738DA2 /* Command.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,6 +660,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C135200D256DC725000FE1B6 /* buffa-dump.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C135200E256DC725000FE1B6 /* buffa-dump.xcdatamodel */,
+			);
+			currentVersion = C135200E256DC725000FE1B6 /* buffa-dump.xcdatamodel */;
+			path = "buffa-dump.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C1024E5E2565F94A009620C3 /* Project object */;
 }

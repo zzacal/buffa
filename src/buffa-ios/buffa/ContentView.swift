@@ -6,16 +6,23 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
+    @ObservedObject var viewService: ViewService
+    @State var stackName: String = ""
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        // Command(currentLine: currentLine)
+        SetStack(viewService: viewService)
+    }
+    
+    init(viewService: ViewService) {
+        self.viewService = viewService
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewService: ViewService(MockSrvClient()))
     }
 }
