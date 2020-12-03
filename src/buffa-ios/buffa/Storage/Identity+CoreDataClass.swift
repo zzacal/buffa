@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Identity)
+
 public class Identity: NSManagedObject {
 
 }

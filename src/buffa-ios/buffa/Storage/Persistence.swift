@@ -2,7 +2,7 @@
 //  Persistence.swift
 //  buffa
 //
-//  Created by Zac Zacal on 11/24/20.
+//  Created by Zac Zacal on 11/25/20.
 //
 
 import CoreData
@@ -15,9 +15,6 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
             let newItem = Identity(context: viewContext)
-            newItem.email = "johnpj@zeppelin.com"
-            newItem.key = "jpjzpln"
-            newItem.token = "ahaAh"
         }
         do {
             try viewContext.save()
@@ -33,7 +30,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "buffa")
+        container = NSPersistentContainer(name: "buffa-dump")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

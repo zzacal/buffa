@@ -10,12 +10,9 @@ import SwiftUI
 @main
 struct buffaApp: App {
     let persistenceController = PersistenceController.shared
-    let client = SrvClient("")
-
     var body: some Scene {
         WindowGroup {
-            ContentView(viewService: ViewService(client))
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            ContentView(viewService: ViewService(MockSrvClient(), persistenceController.container.viewContext))
         }
     }
 }

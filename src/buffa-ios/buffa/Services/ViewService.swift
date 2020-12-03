@@ -6,19 +6,18 @@
 //
 
 import SwiftUI
+import Foundation
+import CoreData
 
 class ViewService : ObservableObject {
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: Identity.entity(),
-                  sortDescriptors: [],
-                  predicate: NSPredicate(format: "key != ''"))
-    var identities: FetchedResults<Identity>
+    var viewContext: NSManagedObjectContext?
     
     var client: SrvClientProtocol
     var key: String?
     @Published var popped: String? = nil
     @Published var isPushing: Bool = false
     @Published var isPushedSuccess: Bool?
+    @Published var dates: [Date] = []
     
     func pop() {
         if let key = self.key {
@@ -39,28 +38,72 @@ class ViewService : ObservableObject {
             })
         }
     }
-    
-    func setKey(_ key: String) -> Bool {
-        self.key = key
-        
-        let identity = Identity(context: viewContext)
-        //let identity = NSEntityDescription.insertNewObject(forEntityName: "Identity", into: viewContext) as! Identity
 
-        identity.key = key
-        identity.email = "jj"
-        identity.token = "asda"
-        do {
-            try viewContext.save()
-            return true
-        } catch {
-            return false
+    func setKey(_ name: String) {
+        
+    }
+
+    func addItem() {
+        if let context = viewContext {
+            let newItem = Identity(context: context)
+            newItem.timestamp = Date()
+            
+            getItems()
+            do {
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
         }
+    }
+
+    func deleteItems(offsets: IndexSet) {
+        if let context = viewContext {
+            let fetchRequet = NSFetchRequest<NSManagedObject>(entityName: "Identity")
+
+            withAnimation {
+                do {
+                    let results = try context.fetch(fetchRequet)
+                    offsets.map { results[$0] }.forEach(context.delete)
+                    
+                    getItems()
+                    try context.save()
+                } catch {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nsError = error as NSError
+                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                }
+            }
+        }
+    }
+    
+    func getItems(){
+        if let context = viewContext {
+            let fetchRequet = NSFetchRequest<NSManagedObject>(entityName: "Identity")
+            do {
+                let results = try context.fetch(fetchRequet)
+                publishItems(objs: results)
+            } catch {
+                print("nope")
+            }
+        }
+    }
+    
+    private func publishItems(objs: [NSManagedObject]) {
+        dates = objs.map { result in result.value(forKey: "timestamp") as! Date}
     }
     
     init(_ client: SrvClientProtocol) {
         self.client = client
-//        if let id = identities.first(where: { x in x.key != nil }) {
-//            self.key = id.key
-//        }
+    }
+    
+    init(_ client: SrvClientProtocol, _ viewContext: NSManagedObjectContext) {
+        self.client = client
+        self.viewContext = viewContext
+        getItems()
     }
 }

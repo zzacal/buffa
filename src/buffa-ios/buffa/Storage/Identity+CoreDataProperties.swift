@@ -20,6 +20,7 @@ extension Identity {
     @NSManaged public var key: String?
     @NSManaged public var token: String?
     @NSManaged public var id: UUID?
+    @NSManaged public var timestamp: Date?
 
 }
 
