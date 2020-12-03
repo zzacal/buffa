@@ -16,7 +16,7 @@ struct ContentView: View {
         }
         List {
             ForEach(viewService.dates, id: \.self) { item in
-                Text("Item at \(item, formatter: itemFormatter)")
+                Text("Key: \(item.key ?? "") at \(item.timestamp ?? Date(), formatter: itemFormatter)")
             }
             .onDelete(perform: deleteItems)
         }
@@ -32,7 +32,7 @@ struct ContentView: View {
     }
 
     private func addItem() {
-        viewService.addItem()
+        viewService.addItem(key: "asdfwe")
         viewService.getItems()
     }
 
