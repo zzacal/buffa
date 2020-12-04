@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @ObservedObject var viewService: ViewService
     var body: some View {
-        if viewService.ids.isEmpty {
+        if viewService.key == nil {
             SetStack(viewService: viewService)
         } else {
             Command(viewService: viewService, currentLine: "")

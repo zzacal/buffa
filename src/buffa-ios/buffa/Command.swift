@@ -12,13 +12,13 @@ struct Command: View {
     @State var currentLine: String
     var body: some View {
         VStack {
-            Btn(label: "Log out", action: { viewService.deleteAllItems() })
+            Btn(label: "Log out", action: { viewService.logOut() })
         }
         VStack {
             TextBox(placeholder: "",
                     text: $currentLine)
             Btn(label: "Pop", action: { viewService.pop(completion: { msg in currentLine = msg }) })
-            Btn(label: "Push", action: { viewService.push(currentLine) })
+            Btn(label: "Push", action: { viewService.push(currentLine, completion: { currentLine = ""} ) })
         }
     }
 }
