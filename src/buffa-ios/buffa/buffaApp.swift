@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct buffaApp: App {
-    @ObservableObject srv = 
+    let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
-            Command(currentLine: "")
+            ContentView(viewService: ViewService(SrvClient("https://buffa-srv.azurewebsites.net"), persistenceController.container.viewContext))
         }
     }
 }
