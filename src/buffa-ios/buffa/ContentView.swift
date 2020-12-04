@@ -11,33 +11,11 @@ import CoreData
 struct ContentView: View {
     @ObservedObject var viewService: ViewService
     var body: some View {
-        Button("Add") {
-            addItem()
+        if viewService.ids.isEmpty {
+            SetStack(viewService: viewService)
+        } else {
+            Command(viewService: viewService, currentLine: "")
         }
-        List {
-            ForEach(viewService.dates, id: \.self) { item in
-                Text("Key: \(item.key ?? "") at \(item.timestamp ?? Date(), formatter: itemFormatter)")
-            }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
-
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
-            }
-        }
-    }
-
-    private func addItem() {
-        viewService.addItem(key: "asdfwe")
-        viewService.getItems()
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        viewService.deleteItems(offsets: offsets)
     }
 }
 

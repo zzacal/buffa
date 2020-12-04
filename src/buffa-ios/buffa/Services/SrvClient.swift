@@ -99,7 +99,7 @@ class SrvClient: SrvClientProtocol {
     }
 }
 
-class MockSrvClient: SrvClientProtocol {
+struct MockSrvClient: SrvClientProtocol {
     func pop(key: String, handler: @escaping (String?) -> Void) -> Void {
         handler("test")
     }

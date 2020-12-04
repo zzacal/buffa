@@ -12,7 +12,7 @@ struct buffaApp: App {
     let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
-            ContentView(viewService: ViewService(MockSrvClient(), persistenceController.container.viewContext))
+            ContentView(viewService: ViewService(SrvClient("https://buffa-srv.azurewebsites.net"), persistenceController.container.viewContext))
         }
     }
 }
