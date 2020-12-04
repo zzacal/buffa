@@ -12,13 +12,18 @@ struct Command: View {
     @State var currentLine: String
     var body: some View {
         VStack {
-            Btn(label: "Log out", action: { viewService.logOut() })
-        }
-        VStack {
-            TextBox(placeholder: "",
-                    text: $currentLine)
-            Btn(label: "Pop", action: { viewService.pop(completion: { msg in currentLine = msg }) })
-            Btn(label: "Push", action: { viewService.push(currentLine, completion: { currentLine = ""} ) })
+            VStack {
+                Btn(label: "Log out", action: { viewService.logOut() })
+            }
+            VStack {
+                Spacer()
+                TextEditor(text: $currentLine).autocapitalization(.none)
+                
+                HStack {
+                    Btn(label: "Pop", action: { viewService.pop(completion: { msg in currentLine = msg }) })
+                    Btn(label: "Push", action: { viewService.push(currentLine, completion: { currentLine = ""} ) })
+                }
+            }
         }
     }
 }

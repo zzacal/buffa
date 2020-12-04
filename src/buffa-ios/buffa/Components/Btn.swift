@@ -12,7 +12,9 @@ struct Btn: View {
     var action: () -> Void
     var body: some View {
         Button(action: action) {
+            Spacer()
             Text(label)
+            Spacer()
         }
     }
 }

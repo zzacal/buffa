@@ -10,9 +10,13 @@ import SwiftUI
 struct TextBox: View {
     @State var placeholder: String = ""
     @Binding var text: String
+    
     var body: some View {
         TextField(placeholder, text: $text)
-            .border(Color(UIColor.separator))
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .cornerRadius(3, antialiased: true)
+            .textCase(.none)
+            .padding(8)
     }
 }
 
