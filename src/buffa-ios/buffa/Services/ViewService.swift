@@ -104,10 +104,10 @@ extension ViewService {
     
     func deleteIdentity(completion: (Result<Bool, Error>) -> Void) {
         if let context = storageContext {
-            let fetchRequet = NSFetchRequest<Identity>(entityName: "Identity")
+            let fetchRequest = NSFetchRequest<Identity>(entityName: "Identity")
             
             do {
-                let results = try context.fetch(fetchRequet)
+                let results = try context.fetch(fetchRequest)
                 results.forEach(context.delete)
                 
                 completion(.success(true))
