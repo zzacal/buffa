@@ -1,17 +1,18 @@
 import * as express from 'express';
-import MemoryStore from './Storage/memoryStore';
-import Store from './Storage/istore';
+import MemoryStore from './storage/memoryStore';
+import Store from './storage/istore';
+import UserManager from './auth/userManager';
 
 class App {
-  public express;
+  public service
   records: Store;
 
   constructor () {
-    this.express = express()
+    this.service = express()
     // Parse URL-encoded bodies (as sent by HTML forms)
-    this.express.use(express.urlencoded({extended: true}));
+    this.service.use(express.urlencoded({extended: true}));
     // Parse JSON bodies (as sent by API clients)
-    this.express.use(express.json());
+    this.service.use(express.json());
 
     this.mountRoutes();
     this.records = new MemoryStore()
@@ -42,8 +43,16 @@ class App {
       res.sendStatus(200);
     })
 
-    this.express.use('/', router)
+    router.post('/user', (req, res) => {
+      const name = req.body.name as string;
+      const password = req.body.password as string;
+
+      const users = new UserManager();
+      users.createUser(name, password);
+    })
+
+    this.service.use('/', router)
   }
 }
 
-export default new App().express
+export default new App().service
