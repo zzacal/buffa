@@ -2,10 +2,12 @@ import * as express from 'express';
 import MemoryStore from './storage/memoryStore';
 import Store from './storage/istore';
 import UserManager from './auth/userManager';
+import { userInfo } from 'os';
 
 class App {
   public service
   records: Store;
+  users = new UserManager();
 
   constructor () {
     this.service = express()
@@ -23,8 +25,8 @@ class App {
     router.get('/', (req, res) => {
       res.json({
         message: 'Hello World!'
-      })
-    })
+      });
+    });
 
     router.get('/pop', (req, res) => {
       const key = req.query.key as string;
@@ -32,26 +34,39 @@ class App {
       if (success) {
         res.send(value);
       } else {
-        res.sendStatus(404);
+        res.status(404).send('unpoppable');
       }
-    })
+    });
 
     router.post('/push', (req, res) => {
       const key = req.query.key as string;
       const val = req.body.message as string;
       this.records.push(key, val);
       res.sendStatus(200);
-    })
+    });
 
     router.post('/user', (req, res) => {
       const name = req.body.name as string;
       const password = req.body.password as string;
 
-      const users = new UserManager();
-      users.createUser(name, password);
-    })
+      const key = this.users.createUser(name, password);
+      res.send(key);
+    });
 
-    this.service.use('/', router)
+    router.get('/user', (req,res) => {
+      const name = req.query.name as string;
+      const password = req.query.password as string;
+
+      this.users.authenticate(name, password, (error, user) => {
+        if (user) {
+          res.send(user);
+        } else {
+          res.status(401).send(error.message);
+        }
+      })
+    });
+
+    this.service.use('/', router);
   }
 }
 
