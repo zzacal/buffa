@@ -8,13 +8,15 @@
 import Foundation
 
 protocol SrvClientProtocol {
-    func pop(key: String, handler: @escaping (String?) -> Void) -> Void
-    func push(key: String, msg: String, handler: @escaping (Bool) -> Void) -> Void
+    func pop(key: String, handler: @escaping (String?) -> Void)
+    func push(key: String, msg: String, handler: @escaping (Bool) -> Void)
+    func register(name: String, password: String, handler: @escaping (String?) -> Void)
+    func login(name: String, password: String, handler: @escaping (String?) -> Void)
 }
 
 class SrvClient: SrvClientProtocol {
     var serviceHost: String = ""
-    func pop(key: String, handler: @escaping (String?) -> Void) -> Void  {
+    func pop(key: String, handler: @escaping (String?) -> Void)  {
         get(url: "pop?key=\(key)", completionHandler: {(data: Data?) -> Void in
             if let sureData = data,
                let result = NSString(data: sureData, encoding: String.Encoding.utf8.rawValue) as String? {
@@ -25,7 +27,7 @@ class SrvClient: SrvClientProtocol {
         })
     }
     
-    func push(key: String, msg: String, handler: @escaping (Bool) -> Void) -> Void {
+    func push(key: String, msg: String, handler: @escaping (Bool) -> Void) {
         do {
             let params = try JSONSerialization.data(withJSONObject: ["message": msg])
             post(url: "push?key=\(key)", data: params, completionHandler: { (data: Data?) in
@@ -37,6 +39,37 @@ class SrvClient: SrvClientProtocol {
             })
         } catch {
             handler(false)
+        }
+    }
+    
+    func register(name: String, password: String, handler: @escaping (String?) -> Void) {
+        do {
+            let params = try JSONSerialization.data(withJSONObject: ["name": name, "password": password])
+            post(url: "user", data: params) { data in
+                if let response = data,
+                   let body = try? JSONSerialization.jsonObject(with: response),
+                   let user = body as? [String: String],
+                   let key = user["key"] {
+                    handler(key)
+                } else  {
+                    handler(nil)
+                }
+            }
+        } catch {
+            handler(nil)
+        }
+    }
+    
+    func login(name: String, password: String, handler: @escaping (String?) -> Void) {
+        get(url: "user?name=\(name)&password=\(password)") { data in
+            if let response = data,
+               let body = try? JSONSerialization.jsonObject(with: response),
+               let user = body as? [String: String],
+               let key = user["key"] {
+                handler(key)
+            } else  {
+                handler(nil)
+            }
         }
     }
     
@@ -100,6 +133,14 @@ class SrvClient: SrvClientProtocol {
 }
 
 struct MockSrvClient: SrvClientProtocol {
+    func register(name: String, password: String, handler: @escaping (String?) -> Void) {
+        handler("testkey")
+    }
+    
+    func login(name: String, password: String, handler: @escaping (String?) -> Void) {
+        handler("testkey")
+    }
+    
     func pop(key: String, handler: @escaping (String?) -> Void) -> Void {
         handler("test")
     }

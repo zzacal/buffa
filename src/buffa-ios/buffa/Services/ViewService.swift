@@ -38,17 +38,35 @@ class ViewService : ObservableObject {
             })
         }
     }
+    
+    func register(_ name: String, _ password: String) {
+        client.register(name: name, password: password) { (result) in
+            if let key = result {
+                self.saveIdentity(key: key, completion: self.useResultKey(_:))
+            }
+        }
+    }
+    
+    func login(_ name: String, _ password: String) {
+        client.login(name: name, password: password) { (result) in
+            if let key = result {
+                self.saveIdentity(key: key, completion: self.useResultKey(_:))
+            }
+        }
+    }
 
     func setKey(_ name: String) {
         key = name
-        saveIdentity(key: name, completion: { result in
-            switch result {
-            case .success(let identity):
-                self.key = identity.key
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        })
+        saveIdentity(key: name, completion: useResultKey(_:))
+    }
+    
+    func useResultKey(_ result: Result<Identity, Error>) {
+        switch result {
+        case .success(let identity):
+            self.key = identity.key
+        case .failure(let error):
+            print(error.localizedDescription)
+        }
     }
     
     func logOut() {

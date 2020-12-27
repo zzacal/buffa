@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserLogin: View {
+    @ObservedObject var viewService: ViewService
     @State var username: String = ""
     @State var password: String = ""
     
@@ -17,13 +18,15 @@ struct UserLogin: View {
                       text: $username)
             TextBox(placeholder: "Password",
                       text: $password)
-            Btn(label: "Login", action: {})
+            Btn(label: "Login", action: {
+                viewService.login(username, password)
+            })
         }
     }
 }
 
 struct UserLogin_Previews: PreviewProvider {
     static var previews: some View {
-        UserLogin()
+        UserLogin(viewService: ViewService(MockSrvClient()))
     }
 }

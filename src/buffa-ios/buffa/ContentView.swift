@@ -12,7 +12,7 @@ struct ContentView: View {
     @ObservedObject var viewService: ViewService
     var body: some View {
         if viewService.key == nil {
-            SetStack(viewService: viewService)
+            UserLogin(viewService: viewService)
         } else {
             Command(viewService: viewService, currentLine: "")
         }
