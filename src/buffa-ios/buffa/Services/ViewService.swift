@@ -21,7 +21,9 @@ class ViewService : ObservableObject {
         if let key = self.key {
             client.pop(key: key, handler: { result in
                 if let msg = result {
-                    self.popped = msg
+                    DispatchQueue.main.async {
+                        self.popped = msg
+                    }
                     completion(msg)
                 }
             })
@@ -32,8 +34,10 @@ class ViewService : ObservableObject {
         isPushing = true
         if let key = self.key {
             client.push(key: key, msg: msg, handler: {result in
-                self.isPushing = false
-                self.isPushedSuccess = result
+                DispatchQueue.main.async {
+                    self.isPushing = false
+                    self.isPushedSuccess = result
+                }
                 completion()
             })
         }
@@ -63,7 +67,9 @@ class ViewService : ObservableObject {
     func useResultKey(_ result: Result<Identity, Error>) {
         switch result {
         case .success(let identity):
-            self.key = identity.key
+            DispatchQueue.main.async {
+                self.key = identity.key
+            }
         case .failure(let error):
             print(error.localizedDescription)
         }
