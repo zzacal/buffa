@@ -49,8 +49,13 @@ class App {
       const name = req.body.name as string;
       const password = req.body.password as string;
 
-      const key = this.users.createUser(name, password);
-      res.send(key);
+      this.users.createUser(name, password, (error, user) => {
+        if(user) {
+          res.send(user)
+        } else {
+          res.status(500).send(error)
+        }
+      });
     });
 
     router.get('/user', (req,res) => {

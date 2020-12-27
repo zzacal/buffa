@@ -9,7 +9,7 @@ class UserManager {
 
     constructor() {}
 
-    createUser(name: string, password: string): string {
+    createUser(name: string, password: string, fn: (error: Error, user?: AuthedUser) => void) {
         const users = this.users;
         this.hasher({ password }, (err, pass, salt, hashed) => {
             if (err) throw err;
@@ -22,12 +22,17 @@ class UserManager {
             };
 
             users.push(user);
-          });
 
-          return name;
+            const authed: AuthedUser = {
+              name: user.name,
+              key: user.key,
+            }
+
+            fn(null, authed);
+          });
     }
 
-    authenticate(name: string, pass: string, fn: (errer: Error, user?: AuthedUser) => void) {
+    authenticate(name: string, pass: string, fn: (error: Error, user?: AuthedUser) => void) {
         const matches = this.users.filter(x => x.name === name)
         // query the db for the given username
         if (!matches) return fn(new Error('cannot find user'));
