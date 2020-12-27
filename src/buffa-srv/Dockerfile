@@ -17,4 +17,4 @@ RUN addgroup -S local_group
 RUN adduser -S local_user -G local_group
 
 USER local_user
-CMD [ "node", "app.js" ]
+CMD [ "node", "." ]
