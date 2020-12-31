@@ -18,7 +18,7 @@ struct Command: View {
             Spacer()
             VStack {
                 Spacer()
-                TextEditor(text: $currentLine).autocapitalization(.none)
+                TextBox(placeholder: "", text: $currentLine, textCap: .none)
                 
                 HStack {
                     Btn(label: "Pop", action: { viewService.pop(completion: { msg in currentLine = msg }) })
