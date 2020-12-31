@@ -12,7 +12,14 @@ struct ContentView: View {
     @ObservedObject var viewService: ViewService
     var body: some View {
         if viewService.key == nil {
-            UserLogin(viewService: viewService)
+            switch viewService.userView {
+            case "register":
+                Register(service: viewService)
+            case "login":
+                Login(service: viewService)
+            default:
+                Register(service: viewService)
+            }
         } else {
             Command(viewService: viewService, currentLine: "")
         }

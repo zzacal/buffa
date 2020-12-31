@@ -11,12 +11,14 @@ struct TextBox: View {
     @State var placeholder: String = ""
     @Binding var text: String
     
+    var textCap: UITextAutocapitalizationType = .none
+    
     var body: some View {
         TextField(placeholder, text: $text)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .cornerRadius(3, antialiased: true)
             .textCase(.none)
-            .padding(8)
+            .padding(8).autocapitalization(textCap)
     }
 }
 

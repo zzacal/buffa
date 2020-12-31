@@ -12,10 +12,13 @@ import CoreData
 class ViewService : ObservableObject {
     var storageContext: NSManagedObjectContext?
     var client: SrvClientProtocol
+    @Published var name: String?
+    @Published var password: String?
     @Published var key: String?
     @Published var popped: String? = nil
     @Published var isPushing: Bool = false
     @Published var isPushedSuccess: Bool?
+    @Published var userView: String?
     
     func pop(completion: @escaping (String) -> Void) {
         if let key = self.key {
@@ -44,6 +47,11 @@ class ViewService : ObservableObject {
     }
     
     func register(_ name: String, _ password: String) {
+        guard self.userView == "register" else {
+            self.userView = "register"
+            return
+        }
+
         client.register(name: name, password: password) { (result) in
             if let key = result {
                 self.saveIdentity(key: key, completion: self.useResultKey(_:))
@@ -52,6 +60,11 @@ class ViewService : ObservableObject {
     }
     
     func login(_ name: String, _ password: String) {
+        guard self.userView == "login" else {
+            self.userView = "login"
+            return
+        }
+        
         client.login(name: name, password: password) { (result) in
             if let key = result {
                 self.saveIdentity(key: key, completion: self.useResultKey(_:))
@@ -80,6 +93,7 @@ class ViewService : ObservableObject {
             switch result {
             case .success(_):
                 self.key = nil
+                self.userView = "login"
             case .failure(_): break
             }
         })

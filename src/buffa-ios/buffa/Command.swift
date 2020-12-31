@@ -15,6 +15,7 @@ struct Command: View {
             VStack {
                 Btn(label: "Log out", action: { viewService.logOut() })
             }
+            Spacer()
             VStack {
                 Spacer()
                 TextEditor(text: $currentLine).autocapitalization(.none)
